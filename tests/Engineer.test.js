@@ -8,8 +8,8 @@ describe("Engineer", () => {
       // Verify that the new object has the correct properties
       expect(engineer.name).toEqual("Ben");
       expect(engineer.id).toEqual(5);
-      expect(engineer.email)toEqual("ben@email.com");
-      expect(engineer.github)toEqual("BenGit");
+      expect(engineer.email).toEqual("ben@email.com");
+      expect(engineer.github).toEqual("BenGit");
     });
   });
 
