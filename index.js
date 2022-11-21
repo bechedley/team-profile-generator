@@ -1,7 +1,7 @@
 // Include packages and files required for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateHtml  = require('./generateHtml');
+const generateHtml  = require('./src/generateHtml');
 
 // Create an array of questions for user input
 const managerQuestions = [
@@ -64,7 +64,7 @@ const engineerQuestions = [
 
 ];
 
-const InternQuestions = [
+const internQuestions = [
     {
         type: 'input',
         name: 'name',
@@ -102,80 +102,67 @@ function init() {
     .prompt(managerQuestions)
 
     // Gather input data and action menu selection
-    .then((data) => {
-        if (data.menu === "Add Engineer") {
+    .then((managerData) => {
+        if (managerData.menu === "Add Engineer") {
             addEngineer();
         }
-         else if (data.menu === "Add Intern") {
+         else if (managerData.menu === "Add Intern") {
             addIntern();
-        } else {
-            return;
-        }
-    })
-    // Gather input data and send to the write to file function
-    .then((data) => {
-        const htmlContent = generateHtml(data);
-        
-        fs.writeFile('index.html', htmlContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created html output!')
-        );
+
+         } else {
+            renderAnswers(managerData);
+         }
     });
 }
 
-// Function to gather Engineer data
-function addEngineer() {
+// Create a function to initialize app
+function renderAnswers(managerData, engineerData, internData) {
     
-    // Use inquirer to initiate question prompts
-    inquirer
-    .prompt(engineerQuestions)
-
-    // Gather input data and action menu selection
-    .then((data) => {
-        if (data.menu === "Add Engineer") {
-            addEngineer();
-        }
-         else if (data.menu === "Add Intern") {
-            addIntern();
-        } else {
-            return;
-        }
-    })
-    // Gather input data and send to the write to file function
-    .then((data) => {
-        const htmlContent = generateHtml(data);
+        const htmlManagerContent = generateHtml(managerData, engineerData, internData);
         
-        fs.writeFile('index.html', htmlContent, (err) =>
+        fs.writeFile('output.html', htmlManagerContent, (err) =>
         err ? console.log(err) : console.log('Successfully created html output!')
         );
-    });
-}
+    }
 
-function addIntern() {
+    function addEngineer() {
     
-    // Use inquirer to initiate question prompts
-    inquirer
-    .prompt(internQuestions)
+        // Use inquirer to initiate question prompts
+        inquirer
+        .prompt(engineerQuestions)
+    
+        // Gather input data and action menu selection
+        .then((engineerData) => {
+            if (engineerData.menu === "Add Engineer") {
+                addEngineer();
+            }
+             else if (engineerData.menu === "Add Intern") {
+                addIntern();
+             } else {
+                renderAnswers(engineerData);
+             }
+        });
+    }
 
-    // Gather input data and action menu selection
-    .then((data) => {
-        if (data.menu === "Add Engineer") {
-            addEngineer();
-        }
-         else if (data.menu === "Add Intern") {
-            addIntern();
-        } else {
-            return;
-        }
-    })
-    // Gather input data and send to the write to file function
-    .then((data) => {
-        const htmlContent = generateHtml(data);
-        
-        fs.writeFile('index.html', htmlContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created html output!')
-        );
-    });
-}
+    function addIntern() {
+    
+        // Use inquirer to initiate question prompts
+        inquirer
+        .prompt(internQuestions)
+    
+        // Gather input data and action menu selection
+        .then((internData) => {
+            if (internData.menu === "Add Engineer") {
+                addEngineer();
+            }
+             else if (internData.menu === "Add Intern") {
+                addIntern();
+             } else {
+                renderAnswers(internData);
+             }
+        });
+    }
+
 
 // Function call to initialize app
 init();
