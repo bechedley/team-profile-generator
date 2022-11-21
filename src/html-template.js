@@ -6,7 +6,7 @@ function renderManager(data) {
 
     const manager = new Manager(data);
 
-    return `<div class="card h-100 border-0">
+    return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-clipboard-data" style="font-size: 12rem; color: white;"></i>
     </div>
@@ -16,8 +16,8 @@ function renderManager(data) {
             Manager
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${manager.id}</li>
-            <li class="list-group-item">Email: ${manager.email}</li>
+            <li class="list-group-item">Employee ID: ${manager.id}</li>
+            <li class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
             <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
         </ul>
     </div>
@@ -29,7 +29,7 @@ function renderEngineer(data) {
 
     const engineer = new Engineer(data);
 
-    return `<div class="card h-100 border-0">
+    return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-tools" style="font-size: 12rem; color: white;"></i>
     </div>
@@ -39,9 +39,9 @@ function renderEngineer(data) {
             Manager
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${engineer.id}</li>
-            <li class="list-group-item">Email: ${engineer.email}</li>
-            <li class="list-group-item">Office Number: ${engineer.github}</li>
+            <li class="list-group-item">Employee ID: ${engineer.id}</li>
+            <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
+            <li class="list-group-item">GitHub: <a href="https://www.github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>
         </ul>
     </div>
 </div>
@@ -52,7 +52,7 @@ function renderIntern(data) {
 
     const intern = new Intern(data);
 
-    return `<div class="card h-100 border-0">
+    return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-mortarboard" style="font-size: 12rem; color: white;"></i>
     </div>
@@ -62,9 +62,9 @@ function renderIntern(data) {
             Manager
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${intern.id}</li>
-            <li class="list-group-item">Email: ${intern.email}</li>
-            <li class="list-group-item">Office Number: ${intern.school}</li>
+            <li class="list-group-item">Employee ID: ${intern.id}</li>
+            <li class="list-group-item">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
+            <li class="list-group-item">School: ${intern.school}</li>
         </ul>
     </div>
 </div>
@@ -87,15 +87,15 @@ function generateHtml(data) {
   </head>
   
   <body>
-      <nav class="navbar" style="background-color: #e3f2fd;">
-          <div class="container-fluid justify-content-center text-center">
-              <span class="navbar-brand mb-0 h1">
-                  <h1>TEAM PROFILE</h1>
-              </span>
-          </div>
-      </nav>
-      <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
-          <div class="col">
+  <nav class="navbar" style="background-color: #e3f2fd;">
+      <div class="container-fluid justify-content-center text-center">
+          <span class="navbar-brand mb-0 h1">
+              <h1>TEAM PROFILE</h1>
+          </span>
+      </div>
+  </nav>
+  <div class="row">
+      <div class="d-inline-flex p-2 justify-content-center">
           
           ${renderManager(data)}
           
