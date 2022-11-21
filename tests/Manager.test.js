@@ -8,8 +8,8 @@ describe("Manager", () => {
       // Verify that the new object has the correct properties
       expect(manager.name).toEqual("Michael");
       expect(manager.id).toEqual(12);
-      expect(manager.email)toEqual("michael@email.com");
-      expect(manager.github)toEqual(90978788);
+      expect(manager.email).toEqual("michael@email.com");
+      expect(manager.github).toEqual(90978788);
     });
   });
 
