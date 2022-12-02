@@ -2,11 +2,12 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
-function renderManager(data) {
 
-    const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+function renderManager(managerData) {
 
-    return `<div class="card h-80 border-0">
+    const manager = new Manager(managerData.managerName, managerData.managerId, managerData.managerEmail, managerData.officeNumber);
+
+    return `<div class="col-3 card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-clipboard-data" style="font-size: 5rem; color: white;"></i>
     </div>
@@ -16,23 +17,23 @@ function renderManager(data) {
             ${manager.getRole()}
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${manager.id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
-            <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
+            <li class="list-group-item"><b>Employee ID:</b> ${manager.id}</li>
+            <li class="list-group-item"><b>Email:</b> <a href="mailto:${manager.email}">${manager.email}</a></li>
+            <li class="list-group-item"><b>Office Number</b> ${manager.officeNumber}</li>
         </ul>
     </div>
 </div>
     `;
 }
 
-function renderEngineer(data) {
+function renderEngineer(newEngineer) {
+
+    if (newEngineer) {
+
+        const engineer = new Engineer(newEngineer.name, newEngineer.id, newEngineer.email, newEngineer.github);
 
 
-    if (data) {
-
-        const engineer = new Engineer(data.name, data.id, data.email, data.github);
-
-    return `<div class="card h-80 border-0">
+        return `<div class="col-3 card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-tools" style="font-size: 5rem; color: white;"></i>
     </div>
@@ -42,25 +43,27 @@ function renderEngineer(data) {
         ${engineer.getRole()}
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${engineer.id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
-            <li class="list-group-item">GitHub: <a href="https://www.github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>
+            <li class="list-group-item"><b>Employee ID:</b> ${engineer.id}</li>
+            <li class="list-group-item"><b>Email:</b> <a href="mailto:${engineer.email}">${engineer.email}</a></li>
+            <li class="list-group-item"><b>GitHub:</b> <a href="https://www.github.com/${engineer.github}" target="_blank">${engineer.github}</a></li>
         </ul>
     </div>
 </div>
     `;
-}     else {
-    return ``;
-}}
 
-function renderIntern(data) {
+    } else {
+        return ``;
+    }
+}
+
+function renderIntern(newIntern) {
 
 
-    if (data) {
+    if (newIntern) {
 
-        const intern = new Intern(data.name, data.id, data.email, data.school);
+        const intern = new Intern(newIntern.name, newIntern.id, newIntern.email, newIntern.school);
 
-    return `<div class="card h-80 border-0">
+        return `<div class="col-3 card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-mortarboard" style="font-size: 5rem; color: white;"></i>
     </div>
@@ -70,20 +73,22 @@ function renderIntern(data) {
         ${intern.getRole()}
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Employee ID: ${intern.id}</li>
-            <li class="list-group-item">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
-            <li class="list-group-item">School: ${intern.school}</li>
+            <li class="list-group-item"><b>Employee ID:</b> ${intern.id}</li>
+            <li class="list-group-item"><b>Email:</b> <a href="mailto:${intern.email}">${intern.email}</a></li>
+            <li class="list-group-item"><b>School:</b> ${intern.school}</li>
         </ul>
     </div>
 </div>
     `;
-}     else {
-    return ``;
-}}
+    } else {
+        return ``;
+    }
+}
 
 // Create a function to generate html output
-function generateHtml(managerData, engineerData, internData) {
-  return `<!doctype html>
+function generateHtml(managerData, allEngineers, allInterns) {
+
+    return `<!doctype html>
   <html lang="en">
   
   <head>
@@ -104,14 +109,14 @@ function generateHtml(managerData, engineerData, internData) {
           </span>
       </div>
   </nav>
-  <div class="row">
-      <div class="d-inline-flex p-2 justify-content-center">
+  <div class="container-fluid">
+      <div class="row align-content-center justify-content-center">
           
           ${renderManager(managerData)}
           
-          ${renderEngineer(engineerData)}
+          ${allEngineers.map(renderEngineer)}
 
-          ${renderIntern(internData)}
+          ${allInterns.map(renderIntern)}
   
           </div>
       </div>

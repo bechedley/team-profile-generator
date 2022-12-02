@@ -14,7 +14,8 @@ Run node.js to initiate the Team Profile generator. Answer the user prompts to g
 
 Link to walkthrough video: (#)
 
-![Screenshot of VS Code showing prompt questions](#)
+![Screenshot of HTML output](./dist/screenshote-team-profile.jpg)
+![Screenshot of VS Code showing prompt questions](./dist/screenshot-team-generator.jpg)
 
 ## Credits
 
@@ -23,6 +24,11 @@ The following resources were referenced to ensure best practice and adherence to
 Inquire documentation via npm: (https://www.npmjs.com/package/inquirer) 
 
 Jest documentation via npm: (https://www.npmjs.com/package/jest)
+
+Bootstrap CSS Framework: (https://getbootstrap.com/)
+Bootstrap Documentation: (https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+
+Common js functions and parameters, for loops and arrays: JS CheatSheet by HTML CheatSheet (https://htmlcheatsheet.com/js/)
 
 ## License
 
