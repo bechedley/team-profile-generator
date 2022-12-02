@@ -7,17 +7,17 @@ const generateHtml  = require('./src/generateHtml');
 const managerQuestions = [
     {
         type: 'input',
-        name: 'name',
+        name: 'managerName',
         message: "What is the Team Manager's name?",
       },
       {
         type: 'number',
-        name: 'id',
+        name: 'managerId',
         message: "What is the Team Manager's employee id number?",
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'managerEmail',
         message: "What is the Team Manager's email address?",
       },
       {
@@ -37,17 +37,17 @@ const managerQuestions = [
 const engineerQuestions = [
     {
         type: 'input',
-        name: 'name',
+        name: 'engineerName',
         message: "What is the Engineer's name?",
       },
       {
         type: 'number',
-        name: 'id',
+        name: 'engineerId',
         message: "What is the Engineer's employee id number?",
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'engineerEmail',
         message: "What is the Engineer's email address?",
       },
       {
@@ -67,22 +67,22 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: 'input',
-        name: 'name',
+        name: 'internName',
         message: "What is the Intern's name?",
       },
       {
         type: 'number',
-        name: 'id',
+        name: 'internId',
         message: "What is the Intern's employee id number?",
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'internEmail',
         message: "What is the Intern's email address?",
       },
       {
         type: 'input',
-        name: 'github',
+        name: 'school',
         message: "What school does the Intern attend?",
       },
       {
@@ -103,19 +103,20 @@ function init() {
 
     // Gather input data and action menu selection
     .then((managerData) => {
+
         if (managerData.menu === "Add Engineer") {
-            addEngineer();
+            addEngineer(managerData);
         }
          else if (managerData.menu === "Add Intern") {
-            addIntern();
+            addIntern(managerData);
 
          } else {
-            renderAnswers(managerData);
+            renderAnswers(managerData, engineerData, internData);
          }
     });
 }
 
-    function addEngineer() {
+    function addEngineer(managerData, engineerData, internData) {
     
         // Use inquirer to initiate question prompts
         inquirer
@@ -123,18 +124,19 @@ function init() {
     
         // Gather input data and action menu selection
         .then((engineerData) => {
+
             if (engineerData.menu === "Add Engineer") {
-                addEngineer();
+                addEngineer(managerData, engineerData, internData);
             }
              else if (engineerData.menu === "Add Intern") {
-                addIntern();
+                addIntern(managerData, engineerData, internData);
              } else {
-                renderAnswers(engineerData);
+                renderAnswers(managerData, engineerData, internData);
              }
         });
     }
 
-    function addIntern() {
+    function addIntern(managerData, engineerData, internData) {
     
         // Use inquirer to initiate question prompts
         inquirer
@@ -143,12 +145,12 @@ function init() {
         // Gather input data and action menu selection
         .then((internData) => {
             if (internData.menu === "Add Engineer") {
-                addEngineer();
+                addEngineer(managerData, engineerData, internData);
             }
              else if (internData.menu === "Add Intern") {
-                addIntern();
+                addIntern(managerData, engineerData, internData);
              } else {
-                renderAnswers(internData);
+                renderAnswers(managerData, engineerData, internData);
              }
         });
     }

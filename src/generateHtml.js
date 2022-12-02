@@ -2,9 +2,10 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
-function renderManager(data) {
+function renderManager(managerData) {
 
-    const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+    const manager = new Manager(managerData.managerName, managerData.managerId, managerData.managerEmail, managerData.officeNumber);
+    console.log(manager);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
@@ -25,12 +26,13 @@ function renderManager(data) {
     `;
 }
 
-function renderEngineer(data) {
+function renderEngineer(engineerData) {
 
 
-    if (data) {
+    if (engineerData) {
 
-        const engineer = new Engineer(data.name, data.id, data.email, data.github);
+        const engineer = new Engineer(engineerData.engineerName, engineerData.engineerId, engineerData.engineerEmail, engineerData.github);
+        console.log(engineer);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
@@ -53,12 +55,12 @@ function renderEngineer(data) {
     return ``;
 }}
 
-function renderIntern(data) {
+function renderIntern(internData) {
 
 
-    if (data) {
+    if (internData) {
 
-        const intern = new Intern(data.name, data.id, data.email, data.school);
+        const intern = new Intern(internData.internName, internData.internId, internData.internEmail, internData.school);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
@@ -82,7 +84,7 @@ function renderIntern(data) {
 }}
 
 // Create a function to generate html output
-function generateHtml(managerData, engineerData, internData) {
+function generateHtml( managerData, engineerData, internData ) {
   return `<!doctype html>
   <html lang="en">
   
