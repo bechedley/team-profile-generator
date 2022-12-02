@@ -2,14 +2,14 @@ const Engineer = require("../lib/Engineer");
 
 describe("Engineer", () => {
   describe("Initialization", () => {
-    it("should create an object with 'name' string, 'id' number, 'email' string and 'github' string", () => {
-      const engineer = new Engineer("Ben", 5, "ben@email.com", "BenGit");
+    it("should create an object with 'name', 'id', 'email' and 'github'", () => {
+        const engineer = new Engineer("Ben", 1, "ben@email.com", "gitb");
 
-      // Verify that the new object has the correct properties
-      expect(engineer.name).toEqual("Ben");
-      expect(engineer.id).toEqual(5);
-      expect(engineer.email).toEqual("ben@email.com");
-      expect(engineer.github).toEqual("BenGit");
+        // Verify that the new object has the correct properties
+        expect(engineer.name).toEqual("Ben");
+        expect(engineer.id).toEqual(1);
+        expect(engineer.email).toEqual("ben@email.com");
+        expect(engineer.github).toEqual("gitb");
     });
   });
 

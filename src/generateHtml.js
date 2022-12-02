@@ -4,16 +4,16 @@ const Intern = require("../lib/Intern");
 
 function renderManager(data) {
 
-    const manager = new Manager(data);
+    const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-clipboard-data" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-clipboard-data" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${manager.name}</h5>
         <div class="card-header text-center">
-            Manager
+            ${manager.getRole()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Employee ID: ${manager.id}</li>
@@ -27,16 +27,19 @@ function renderManager(data) {
 
 function renderEngineer(data) {
 
-    const engineer = new Engineer(data);
+
+    if (data) {
+
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-tools" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-tools" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${engineer.name}</h5>
         <div class="card-header text-center">
-            Manager
+        ${engineer.getRole()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Employee ID: ${engineer.id}</li>
@@ -46,20 +49,25 @@ function renderEngineer(data) {
     </div>
 </div>
     `;
-}
+}     else {
+    return ``;
+}}
 
 function renderIntern(data) {
 
-    const intern = new Intern(data);
+
+    if (data) {
+
+        const intern = new Intern(data.name, data.id, data.email, data.school);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-mortarboard" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-mortarboard" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${intern.name}</h5>
         <div class="card-header text-center">
-            Manager
+        ${intern.getRole()}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Employee ID: ${intern.id}</li>
@@ -69,10 +77,12 @@ function renderIntern(data) {
     </div>
 </div>
     `;
-}
+}     else {
+    return ``;
+}}
 
 // Create a function to generate html output
-function generateHtml(data) {
+function generateHtml(managerData, engineerData, internData) {
   return `<!doctype html>
   <html lang="en">
   
@@ -97,11 +107,11 @@ function generateHtml(data) {
   <div class="row">
       <div class="d-inline-flex p-2 justify-content-center">
           
-          ${renderManager(data)}
+          ${renderManager(managerData)}
           
-          ${renderEngineer(data)}
+          ${renderEngineer(engineerData)}
 
-          ${renderIntern(data)}
+          ${renderIntern(internData)}
   
           </div>
       </div>

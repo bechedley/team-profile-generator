@@ -9,14 +9,14 @@ describe("Intern", () => {
       expect(intern.name).toEqual("Vanessa");
       expect(intern.id).toEqual(20);
       expect(intern.email).toEqual("vanessa@email.com");
-      expect(intern.github).toEqual("Sydney High School");
+      expect(intern.school).toEqual("Sydney High School");
     });
   });
 
   describe("getRole", () => {
     it("should return 'Intern'", () => {
       // Create new objects to test with
-      const intern = new intern("Tom", 10, "tom@email.com", "Melbourne High School");
+      const intern = new Intern("Tom", 10, "tom@email.com", "Melbourne High School");
 
       // Verify that the role was returned as Intern
       expect(intern.getRole(intern)).toEqual("Intern");
