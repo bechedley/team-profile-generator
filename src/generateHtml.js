@@ -2,6 +2,7 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
+
 function renderManager(managerData) {
 
     const manager = new Manager(managerData.managerName, managerData.managerId, managerData.managerEmail, managerData.officeNumber);
@@ -26,15 +27,15 @@ function renderManager(managerData) {
     `;
 }
 
-function renderEngineer(engineerData) {
+function renderEngineer(newEngineer) {
 
+    if (newEngineer) {
 
-    if (engineerData) {
+            const engineer = new Engineer(newEngineer.name, newEngineer.id, newEngineer.email, newEngineer.github);
 
-        const engineer = new Engineer(engineerData.engineerName, engineerData.engineerId, engineerData.engineerEmail, engineerData.github);
-        console.log(engineer);
+            console.log(engineer);
 
-    return `<div class="card h-80 border-0">
+            return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-tools" style="font-size: 5rem; color: white;"></i>
     </div>
@@ -51,18 +52,20 @@ function renderEngineer(engineerData) {
     </div>
 </div>
     `;
-}     else {
-    return ``;
-}}
 
-function renderIntern(internData) {
+    } else {
+        return ``;
+    }
+}
+
+function renderIntern(newIntern) {
 
 
-    if (internData) {
+    if (newIntern) {
 
-        const intern = new Intern(internData.internName, internData.internId, internData.internEmail, internData.school);
+        const intern = new Intern(newIntern.name, newIntern.id, newIntern.email, newIntern.school);
 
-    return `<div class="card h-80 border-0">
+        return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-mortarboard" style="font-size: 5rem; color: white;"></i>
     </div>
@@ -79,13 +82,15 @@ function renderIntern(internData) {
     </div>
 </div>
     `;
-}     else {
-    return ``;
-}}
+    } else {
+        return ``;
+    }
+}
 
 // Create a function to generate html output
-function generateHtml( managerData, engineerData, internData ) {
-  return `<!doctype html>
+function generateHtml(managerData, allEngineers, allInterns) {
+
+    return `<!doctype html>
   <html lang="en">
   
   <head>
@@ -111,9 +116,9 @@ function generateHtml( managerData, engineerData, internData ) {
           
           ${renderManager(managerData)}
           
-          ${renderEngineer(engineerData)}
+          ${allEngineers.map(renderEngineer)}
 
-          ${renderIntern(internData)}
+          ${allInterns.map(renderIntern)}
   
           </div>
       </div>

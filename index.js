@@ -2,6 +2,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHtml  = require('./src/generateHtml');
+const Engineer = require("./lib/Engineer")
+const Intern = require("./lib/Intern")
+
+// Create array to store multiple engineers
+const allEngineers = [];
+// Create array to store multiple interns
+const allInterns = [];
 
 // Create an array of questions for user input
 const managerQuestions = [
@@ -111,7 +118,7 @@ function init() {
             addIntern(managerData);
 
          } else {
-            renderAnswers(managerData, engineerData, internData);
+            renderAnswers(managerData, allEngineers, allInterns);
          }
     });
 }
@@ -125,13 +132,17 @@ function init() {
         // Gather input data and action menu selection
         .then((engineerData) => {
 
+          const engineers = new Engineer(engineerData.engineerName, engineerData.engineerId, engineerData.engineerEmail, engineerData.github);
+          allEngineers.push(engineers);
+
             if (engineerData.menu === "Add Engineer") {
-                addEngineer(managerData, engineerData, internData);
+                addEngineer(managerData, allEngineers, allInterns);
             }
              else if (engineerData.menu === "Add Intern") {
-                addIntern(managerData, engineerData, internData);
+                addIntern(managerData, allEngineers, allInterns);
              } else {
-                renderAnswers(managerData, engineerData, internData);
+                
+                renderAnswers(managerData, allEngineers, allInterns);
              }
         });
     }
@@ -144,21 +155,26 @@ function init() {
     
         // Gather input data and action menu selection
         .then((internData) => {
+          
+          const interns = new Intern(internData.internName, internData.internId, internData.internEmail, internData.school);
+          allInterns.push(interns);
+
             if (internData.menu === "Add Engineer") {
-                addEngineer(managerData, engineerData, internData);
+                addEngineer(managerData, allEngineers, allInterns);
             }
              else if (internData.menu === "Add Intern") {
-                addIntern(managerData, engineerData, internData);
+                addIntern(managerData, allEngineers, allInterns);
              } else {
-                renderAnswers(managerData, engineerData, internData);
+                
+                renderAnswers(managerData, allEngineers, allInterns);
              }
         });
     }
 
 // Create a function to initialize app
-function renderAnswers(managerData, engineerData, internData) {
+function renderAnswers(managerData, allEngineers, allInterns) {
     
-  const htmlManagerContent = generateHtml(managerData, engineerData, internData);
+  const htmlManagerContent = generateHtml(managerData, allEngineers, allInterns);
   
   fs.writeFile('./dist/output.html', htmlManagerContent, (err) =>
   err ? console.log(err) : console.log('Successfully created html output!')
