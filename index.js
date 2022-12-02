@@ -115,16 +115,6 @@ function init() {
     });
 }
 
-// Create a function to initialize app
-function renderAnswers(managerData, engineerData, internData) {
-    
-        const htmlManagerContent = generateHtml(managerData, engineerData, internData);
-        
-        fs.writeFile('output.html', htmlManagerContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created html output!')
-        );
-    }
-
     function addEngineer() {
     
         // Use inquirer to initiate question prompts
@@ -163,6 +153,14 @@ function renderAnswers(managerData, engineerData, internData) {
         });
     }
 
-
+// Create a function to initialize app
+function renderAnswers(managerData, engineerData, internData) {
+    
+  const htmlManagerContent = generateHtml(managerData, engineerData, internData);
+  
+  fs.writeFile('./dist/output.html', htmlManagerContent, (err) =>
+  err ? console.log(err) : console.log('Successfully created html output!')
+  );
+}
 // Function call to initialize app
 init();

@@ -8,7 +8,7 @@ function renderManager(data) {
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-clipboard-data" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-clipboard-data" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${manager.name}</h5>
@@ -27,13 +27,14 @@ function renderManager(data) {
 
 function renderEngineer(data) {
 
-    const engineer = new Engineer(data.name, data.id, data.email, data.github);
 
-    if (!engineer === null) {
+    if (data) {
+
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-tools" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-tools" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${engineer.name}</h5>
@@ -54,13 +55,14 @@ function renderEngineer(data) {
 
 function renderIntern(data) {
 
-    const intern = new Intern(data.name, data.id, data.email, data.school);
 
-    if (!intern === null) {
+    if (data) {
+
+        const intern = new Intern(data.name, data.id, data.email, data.school);
 
     return `<div class="card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
-        <i class="bi-mortarboard" style="font-size: 12rem; color: white;"></i>
+        <i class="bi-mortarboard" style="font-size: 5rem; color: white;"></i>
     </div>
     <div class="card-body bg-light rounded">
         <h5 class="card-title text-center">${intern.name}</h5>
