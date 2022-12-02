@@ -12,7 +12,7 @@ N/A
 
 Run node.js to initiate the Team Profile generator. Answer the user prompts to generate the information to fill out the html output file.
 
-Link to walkthrough video: (https://watch.screencastify.com/v/iz1jxKuoFIoWUE3KMGqh)
+Link to walkthrough video: (https://drive.google.com/file/d/14q0wq8nmFR-yRSFkS7v0ndKBVwVPBoQ3/view)
 
 ![Screenshot of HTML output](./dist/screenshote-team-profile.jpg)
 ![Screenshot of VS Code showing prompt questions](./dist/screenshot-team-generator.jpg)
