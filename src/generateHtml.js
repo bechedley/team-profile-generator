@@ -6,7 +6,6 @@ const Intern = require("../lib/Intern");
 function renderManager(managerData) {
 
     const manager = new Manager(managerData.managerName, managerData.managerId, managerData.managerEmail, managerData.officeNumber);
-    console.log(manager);
 
     return `<div class="col-3 card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
@@ -31,11 +30,10 @@ function renderEngineer(newEngineer) {
 
     if (newEngineer) {
 
-            const engineer = new Engineer(newEngineer.name, newEngineer.id, newEngineer.email, newEngineer.github);
+        const engineer = new Engineer(newEngineer.name, newEngineer.id, newEngineer.email, newEngineer.github);
 
-            console.log(engineer);
 
-            return `<div class="col-3 card h-80 border-0">
+        return `<div class="col-3 card h-80 border-0">
     <div class="text-bg-info mb-3 text-center rounded-circle">
         <i class="bi-tools" style="font-size: 5rem; color: white;"></i>
     </div>
